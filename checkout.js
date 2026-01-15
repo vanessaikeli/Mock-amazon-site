@@ -1,7 +1,7 @@
 import { cart } from "../data/cart.js";
 import { products } from "../data/products.js";
 
-let cartSummaryHTML;
+let cartSummaryHTML='';
 let matchingItem;
 
 cart.forEach((cartItem)=>{
@@ -12,7 +12,7 @@ if(cartItem.id===product.id){
     }
 })
 cartSummaryHTML+=`
- <div class='cart-item-container js-cart-item-container-${products.id}'>
+ <div class='cart-item-container js-cart-item-container-${cartItem.id}'>
             <div class="delivery-date">
               Delivery date: Tuesday, June 21
             </div>
@@ -92,16 +92,17 @@ cartSummaryHTML+=`
 )
 
 
-let deleteIdentifier;
+
 document.querySelector('.js-order-summary').innerHTML=cartSummaryHTML;
 document.querySelectorAll('.js-delete-link').forEach((link)=>{
 link.addEventListener('click',()=>{
-deleteIdentifier=link.dataset.productId;
+const deleteIdentifier=link.dataset.productId;
 console.log(deleteIdentifier)
 let newArray=[];
 cart.forEach((cartItem)=>{
- if(!cartItem.id===deleteIdentifier){
- newArray=newArray.push(cartItem)
+ if(cartItem.id!==deleteIdentifier){
+ newArray.push(cartItem)
+ document.querySelector(`.js-cart-item-container-${deleteIdentifier}`).remove()
  }
  console.log(newArray)
 }
