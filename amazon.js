@@ -65,14 +65,14 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
     let selectValue=Number(document.querySelector(`.js-quantity-selector-${productId}`).value)
     let matchingItem;
 
-    // 1️⃣ Find item
+    
     cart.forEach((cartItem) => {
       if (productId === cartItem.productId) {
         matchingItem = cartItem;
       }
     });
 
-    // 2️⃣ Update cart
+    
     if (matchingItem) {
       matchingItem.quantity += selectValue;
     } else {
@@ -90,4 +90,5 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
 
   });
 });
+
 
